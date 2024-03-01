@@ -1,0 +1,27 @@
+#!/bin/bash
+
+runtest.sh "testRemoveMiddle"
+
+runtest.sh "testRemoveMiddleThenApply"
+
+runtest.sh "testConcatEmpty2"
+
+runtest.sh "testConcat2Empty"
+
+runtest.sh "testConcatEmpty2Empty"
+
+runtest.sh "testPutEmpty"
+
+runtest.sh "testRemoveEmpty"
+
+runtest.sh "testGetEmpty"
+
+runtest.sh "testApplyEmpty"
+
+runtest.sh "testSearchEmpty"
+
+runtest.sh "testRemoveFirst"
+
+runtest.sh "testRemoveLast"
+
+runtest.sh "testGetOne"

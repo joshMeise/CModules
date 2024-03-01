@@ -1,0 +1,9 @@
+#!/bin/bash
+
+runtest.sh "testPushEmptyStack"
+runtest.sh "testPush2Stack"
+runtest.sh "testOpenCloseStack"
+runtest.sh "testPush100Stack"
+runtest.sh "testApplySingleStack"
+runtest.sh "testPop1Stack"
+runtest.sh "testPop5Stack"
