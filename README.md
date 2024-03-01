@@ -2,11 +2,11 @@
 
 Welcome to the C Modules Repository! This repository contains a collection of modules written in C, each providing different functionalities such as hash table, queue, and stack implementations.
 
-** Introduction
+## Introduction
 
 This repository aims to provide reusable and efficient C modules for common data structures and algorithms.
 
-** Modules Overview
+## Modules Overview
 
 Currently, the repository includes the following modules:
 
@@ -16,7 +16,7 @@ Currently, the repository includes the following modules:
 
 Each module is designed to be independent and can be used separately or in combination with others, depending on your project requirements.
 
-** Directory Structure
+## Directory Structure
 
 The repository is organized as follows:
 
@@ -24,10 +24,10 @@ The repository is organized as follows:
 - *lib/*: Contains the compiled library generated from the modules.
 - *tests/*: Includes extensive test programs for all modules to ensure their correctness and reliability.
 
-** Building the Library
+## Building the Library
 
 To build the library, navigate to the *utils/* directory and run the makefile. The compiled library will be generated in the *lib/* directory.
 
-** Running Tests
+## Running Tests
 
 To run the test programs for each module, navigate to the respective *tests/* directory and compile the test programs using your preferred compiler. Then, run the compiled test programs to review the test results and ensure the correctness and reliability of the modules.
