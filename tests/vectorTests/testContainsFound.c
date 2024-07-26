@@ -7,7 +7,6 @@
  * 
  */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <vector.h>
 #include <stdbool.h>
@@ -17,7 +16,7 @@ static bool compareInt(void *vp1, void *vp2) {
 
 	i = (int *)vp1;
 	j = (int *)vp2;
-	printf("%d %d\n", *i, *j);
+
 	if (*i == *j) return true;
 	else return false;
 }
