@@ -57,9 +57,13 @@ void vectorFree(vector_t *vp) {
 	// Variable declarations.
 	privateVector_t *pvp;
 
+	// Check argument.
+	if (vp == NULL)
+		return;
+	
 	// Coerce into valid datatype.
 	pvp = (privateVector_t *)vp;
-
+	
 	// Free array.
 	free(pvp->arr);
 
@@ -92,17 +96,17 @@ int32_t vectorInsertBack(vector_t *vp, void *datap) {
 			return 1;
 		}
 	}
-	// Else grow the vector by 1.
+	// Grow the vector by 1.
 	else {
 		if ((pvp->arr = (vectorNode_t *)realloc(pvp->arr, sizeof(vectorNode_t)* (pvp->n + 1))) == NULL) {
 			fprintf(stderr, "Memory allocation failed.\n");
 			return 1;
 		}
 	}
-
+	
 	// Insert new element.
 	pvp->arr[pvp->n].data = datap;
-
+	
 	// Increase the size.
 	(pvp->n)++;
 
@@ -260,10 +264,44 @@ void vectorApply(vector_t *vp, void (*func)(void *elementp)) {
  * Inputs: vector
  * Outputs: current size
  */
-int32_t vectorGetSize(vector_t *vp);
+int32_t vectorGetSize(vector_t *vp) {
+	// Variable declarations.
+	privateVector_t *pvp;
+
+	// Check arguments.
+	if (vp == NULL) {
+		fprintf(stderr, "Invalid argument.\n");
+		return 0;
+	}
+
+	// Coerce into valid datatype.
+	pvp = (privateVector_t *)vp;
+
+	return pvp->n;
+}
 
 /* Returns an element of the vector at a given index.
  * Inputs: vector, index
  * Outputs: pointer to element; NULL if unsuccessful
  */
-void *vectorGetElement(vector_t *vp, int index);
+void *vectorGetElement(vector_t *vp, int index) {
+	// Variable declarations.
+	privateVector_t *pvp;
+	
+	// Check arguments.
+	if (vp == NULL) {
+		fprintf(stderr, "Invalid argument.\n");
+		return 0;
+	}
+
+	// Coerce into valid datatype.
+	pvp = (privateVector_t *)vp;
+
+	// Check bounds.
+	if (index < 0 || index >= pvp->n) {
+		fprintf(stderr, "Index out of bounds.\n");
+		return NULL;
+	}
+
+	return pvp->arr[index].data;
+}
