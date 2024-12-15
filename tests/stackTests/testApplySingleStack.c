@@ -30,7 +30,7 @@ int main(void) {
 		printf("Failure opening stack.\n");
 
 	// Push number to stack.
-	if (push(stack, &num) != 0)
+	if (stackPush(stack, &num) != 0)
 		exit(EXIT_FAILURE);
 
 	// Add 3 one the number in the stack.

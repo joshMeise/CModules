@@ -32,7 +32,7 @@ int main(void) {
 			*num = i;
 			
 			// Push number to stack.
-			if (push(stack, num) != 0)
+			if (stackPush(stack, num) != 0)
 				exit(EXIT_FAILURE);
 		}
 	}

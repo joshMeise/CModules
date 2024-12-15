@@ -25,4 +25,4 @@ testPop5Stack:
 										gcc $(CFLAGS) testPop5Stack.c $(LIBS) -o $@
 
 clean:
-			rm -f testPushEmptyStack testPush2Stack testPush100Stack testOpenClose testApplySingleStack testPop1Stack testPop5Stack *.o
+			rm -f testPushEmptyStack testPush2Stack testPush100Stack testOpenCloseStack testApplySingleStack testPop1Stack testPop5Stack *.o

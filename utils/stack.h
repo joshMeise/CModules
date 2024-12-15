@@ -21,10 +21,10 @@ stackDS_t *stackOpen(void);
 void stackClose(stackDS_t *sp);
 
 /* Removes top element of stack. */
-void *pop(stackDS_t *sp);
+void *stackPop(stackDS_t *sp);
 
 /* Add element to top of stack. */
-int push(stackDS_t *sp, void *elementp);
+int stackPush(stackDS_t *sp, void *elementp);
 
 /* Apply function to every element in stack. */
 void stackApply(stackDS_t *sp, void (*fn)(void *elementp));

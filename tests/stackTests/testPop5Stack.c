@@ -32,14 +32,14 @@ int main(void) {
 			*num = i;
 			
 			// Push number to stack.
-			if (push(stack, num) != 0)
+			if (stackPush(stack, num) != 0)
 				exit(EXIT_FAILURE);
 		}
 	}
 
 	// Pop last 5 elements from stack and compare to array.
 	for (i = 0; i < 5; i++) {
-		popped = (int *)pop(stack);
+		popped = (int *)stackPop(stack);
 
 		if (*popped != 99 - i)
 			exit(EXIT_FAILURE);

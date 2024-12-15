@@ -180,7 +180,6 @@ void *hsearch(hashtable_t *htp, bool (*searchfn)(void* elementp, const void* sea
 	void *p;
 	int32_t location;
 
-	
 	// Coerce into correct datatype
 	phtp = (privatehash_t *)htp;
 

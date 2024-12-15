@@ -23,11 +23,11 @@ int main(void) {
 		printf("Failure opening stack.\n");
 
 	// Push number to stack.
-	if (push(stack, &num1) != 0)
+	if (stackPush(stack, &num1) != 0)
 		exit(EXIT_FAILURE);
 
 	// Push number to stack.
-	if (push(stack, &num2) != 0)
+	if (stackPush(stack, &num2) != 0)
 		exit(EXIT_FAILURE);
 
 	stackClose(stack);

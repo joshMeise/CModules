@@ -1,14 +1,22 @@
-/* 
- * stack.h --- implements functions described in stack.h.
+/*
+ * stack.c --- implements functions described in stack.h interface
  * 
  * Author: Joshua Meise
  * Created: 02-24-2024
  * Version: 1.0
  * 
- * Description: Allows for functionality defined in stack interface to be implemented.
+ * Description: Implements the functionality fo a stack using a linked list data structure.
+ *
+ * I included this pice of code in my application as I believe it exemplifies the elegance of writing modular data structures in C.
+ * Even though C is not an object-oriented language, one can still take advantage of the reusability and maintainability that is provided by using an object-oriented language through modular programming.
+ * In doing so, one is able to keep the advantages that come with C (speed, and less abstraction) while writing easlity maintainable code.
+ * This is not the most complex piece of code or the most complicated data structure, but I believe that it portrays my understanding and implementation of the stack data structure within the application's limit on the number of lines of code.
+ * I believe that coding is a form of art and this program clearly depicts my coding style.
+ * Additional stack functionality (such as stackClose(), stackPop(), stackApply(), etc.) ommitted due to 100 line limit on application.
  * 
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <stack.h>
 
@@ -35,20 +43,58 @@ typedef struct privateStack {
  * Outputs: Pointer to the stack that was just created; NULL if failure.
  */
 stackDS_t *stackOpen(void) {
-	// Variable declarations.
 	privateStack_t *sp;
 
-	// Allocate memory for stack.
-	if ((sp = (privateStack_t *)malloc(sizeof(privateStack_t))) == NULL)
+	// Allocate memory for stack data structure.
+	if ((sp = (privateStack_t *)malloc(sizeof(privateStack_t))) == NULL) {
+		fprintf(stderr, "Memory allocation failed in function stackOpen().\n");
 		return NULL;
+	}
 	
-	// Initialise top pointer.
+	// Initialise stack to point to NULL signifying empty stack
 	sp->top = NULL;
 	
-	// Coerce and return.
 	return (stackDS_t *)sp;
 }
-		
+
+
+/*
+ * Add element to top of stack.
+ * Inputs: Stack upon which to add, data element to add to stack.
+ * Outputs: 0 for success, non-zero otehrwise
+ */
+int stackPush(stackDS_t *sp, void *elementp) {
+	privateStack_t *s;
+	stackNode_t *node;
+	
+	// Check validity of arguments.
+	if (sp == NULL || elementp == NULL) {
+		fprintf(stderr, "Invalid argument(s) to function stackPush().\n");
+		return 1;
+	}
+	
+	s = (privateStack_t *)sp;
+
+	// Create a new node for stack.
+	if ((node = (stackNode_t *)malloc(sizeof(stackNode_t))) == NULL) {
+		fprintf(stderr, "Memory allocation failed in function stackPush().\n");
+		return 1;
+	}
+
+	// Initialise fields of new node.
+	node->data = elementp;
+	node->prev = NULL;
+	
+	// Add node on top of stack.
+	node->prev = s->top;
+	s->top = node;
+
+	return 0;
+}
+
+/*
+ * Additional stack functionality (such as stackClose(), stackPop(), stackApply(), etc.) ommitted due to line limit on application.
+ */
 
 /*
  * Deallocate stack and free everything in it.
@@ -56,39 +102,40 @@ stackDS_t *stackOpen(void) {
  * Output: Node.
  */
 void stackClose(stackDS_t *sp) {
-	// Variable declarations.
 	stackNode_t *curr, *tmp;
 	privateStack_t *s;
 
-	// Coerce.
+	// Check validity of arguments.
+	if (sp == NULL) {
+		fprintf(stderr, "Invalid argument(s) to function stackClose().\n");
+		return;
+	}
+
 	s = (privateStack_t *)sp;
 
-	// Start at top of stack.
+	// Begin freeing from top of stack.
 	curr = s->top;
 
-	// Loop until bottom of stack.
+	// Free until reaching bottom of stack (empty stack).
 	while (curr != NULL) {
-		// Save current position.
+		// Save current position and move to node below in stack.
 		tmp = curr;
-
-		// Move current to node below.
 		curr = curr->prev;
 
-		// Free memory.
+		// Free current node of stack.
 		free(tmp);
 	}
 
-	// Free the stack itself.
+	// Free the stack data structure itself.
 	free(s);
 }
-		
-		
+
 /*
  * Removes top element of stack.
  * Inputs: Pointer to stack.
  * Outputs: Pointer to data portion of top element; NULL if empty.
  */
-void *pop(stackDS_t *sp) {
+void *stackPop(stackDS_t *sp) {
 	// Variable declarations.
 	privateStack_t *s;
 	stackNode_t *ptr;
@@ -114,38 +161,6 @@ void *pop(stackDS_t *sp) {
 	free(ptr);
 
 	return(data);
-}
-
-/*
- * Add element to top of stack.
- * Inputs: Stack upon which to add, data for element.
- * Outputs: 0 for success, non-zero otehrwise
- */
-int push(stackDS_t *sp, void *elementp) {
-	// Variable declarations.
-	privateStack_t *s;
-	stackNode_t *node;
-	
-	// Check validity of arguments.
-	if (sp == NULL || elementp == NULL)
-		return 1;
-	
-	// Coerce.
-	s = (privateStack_t *)sp;
-
-	// Create a new node.
-	if ((node = (stackNode_t *)malloc(sizeof(stackNode_t))) == NULL)
-		return 1;
-
-	// Fill fields of new node.
-	node->data = elementp;
-	node->prev = NULL;
-
-	// Add node on top of stack.
-	node->prev = s->top;
-	s->top = node;
-
-	return 0;
 }
 
 /*

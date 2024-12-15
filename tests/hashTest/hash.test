@@ -1,0 +1,9 @@
+#!/bin/bash
+
+shopt -s nullglob
+
+for f in test* ; do
+		if [ -x $f ]; then
+				runtest.sh $f
+		fi
+done

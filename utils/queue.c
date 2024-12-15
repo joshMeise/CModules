@@ -5,7 +5,7 @@
  * Created: 09-30-2023
  * Version: 1.0
  * 
- * Description: This module implements a queue data structure.
+ * Description: This module implements a queue  data structure.
  * 
  */
 
