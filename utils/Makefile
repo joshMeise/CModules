@@ -1,5 +1,5 @@
 CFLAGS=-Wall -pedantic -std=c11 -I. -g
-OFILES=stack.o queue.o hash.o vector.o
+OFILES=stack.o queue.o hash.o vector.o linkedList.o
 
 all:  $(OFILES)
 			ar cr ../lib/libutils.a $(OFILES)
